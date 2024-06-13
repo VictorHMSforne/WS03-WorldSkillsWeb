@@ -1,0 +1,87 @@
+﻿@model WS.Models.Pesquisa
+
+@{
+    ViewData["Title"] = "Create";
+}
+<style>
+    .slider {
+        width: 100%;
+        max-width: 300px;
+    }
+</style>
+
+
+<h1>Create</h1>
+
+<h4>Pesquisa</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pergunta1" class="control-label">1 - Qual é seu nível de satisfação com o ambiente de trabalho hoje?</label>
+                <input asp-for="Pergunta1" type="range" min="1" max="10" value="5" class="slider" id="mySlider1">
+                <p>Value: <span id="sliderValue1">5</span></p>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pergunta2" class="control-label">2 - Atualmente, o ambiente de trabalho atende às suas expectativas?</label>
+                <input asp-for="Pergunta2" type="range" min="1" max="10" value="5" class="slider" id="mySlider2">
+                <p>Value: <span id="sliderValue2">5</span></p>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pergunta3" class="control-label">3 - Quão próximo do ideal está seu atual ambiente de trabalho?</label>
+                <input asp-for="Pergunta3" type="range" min="1" max="10" value="5" class="slider" id="mySlider3">
+                <p>Value: <span id="sliderValue3">5</span></p>
+            </div>
+           @* <div class="form-group">
+                <label asp-for="Resultado" class="control-label"></label>
+                <input asp-for="Resultado" class="form-control" />
+                <span asp-validation-for="Resultado" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+
+    ///
+    const slider1 = document.getElementById('mySlider1');
+    const output1 = document.getElementById('sliderValue1');
+
+    slider1.oninput = function () {
+        output1.textContent = this.value;
+    }
+    const slider2 = document.getElementById('mySlider2');
+    const output2 = document.getElementById('sliderValue2');
+
+    slider2.oninput = function () {
+        output2.textContent = this.value;
+    }
+    const slider3 = document.getElementById('mySlider3');
+    const output3 = document.getElementById('sliderValue3');
+
+    slider3.oninput = function () {
+        output3.textContent = this.value;
+    }
+</script>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
